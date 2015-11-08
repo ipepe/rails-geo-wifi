@@ -5,3 +5,6 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+puts "Seeding #{Rails.env}"
+require File.expand_path("../seeds_#{Rails.env}", __FILE__)

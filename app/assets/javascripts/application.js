@@ -12,5 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
+//= require leaflet
+//= require 'leaflet.markercluster/dist/leaflet.markercluster-src.js'
 //= require_tree .
+L.Icon.Default.imagePath = '/assets/leaflet/images/';
