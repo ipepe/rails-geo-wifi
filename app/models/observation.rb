@@ -3,6 +3,8 @@ class Observation < ActiveRecord::Base
   belongs_to :network_service
   validates_presence_of :network_service, :latitude, :longitude
 
+  reverse_geocoded_by :latitude, :longitude
+
   def bssid=(value)
     value = NetworkService.standarize_bssid(value)
     self.network_service = NetworkService.find_or_create_by(bssid: value)

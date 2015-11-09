@@ -37,6 +37,8 @@ gem 'quiet_assets'
 gem 'geocoder'
 gem 'maxminddb'
 gem 'gon'
+gem 'rufus-scheduler'
+gem 'smarter_csv'
 
 #
 # #devise
