@@ -7,5 +7,8 @@ Rails.application.routes.draw do
       get "current_location"
     end
   end
-  root 'geolocation#geocode'
+
+  resources :network_services, only: [:index]
+
+  root 'network_services#index'
 end

@@ -1,6 +1,7 @@
 class NetworkService < ActiveRecord::Base
 
   belongs_to :network_name
+  has_many :observations
   validates_presence_of :bssid
 
   def bssid=(value)
@@ -14,6 +15,10 @@ class NetworkService < ActiveRecord::Base
     else
       self.delimetered_bssid
     end
+  end
+
+  def geojson_coordinates
+    [self.observations.first.longitude, self.observations.first.latitude]
   end
 
   def delimetered_bssid
