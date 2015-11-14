@@ -7,7 +7,9 @@ class WifiObservation < ActiveRecord::Base
   reverse_geocoded_by :latitude, :longitude
 
   after_create do
-    self.wifi_service.recalculate_position
+    service = self.wifi_service
+    service.recalculate_position
+    service.save
   end
 
   def bssid=(value)
