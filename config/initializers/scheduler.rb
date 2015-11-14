@@ -9,5 +9,5 @@
   # scheduler.join
 # end
 Rufus::Scheduler.new.every '1m' do
-  puts "Observations count: #{Observation.count}"
+  puts "Observations count: #{WifiObservation.count}"
 end

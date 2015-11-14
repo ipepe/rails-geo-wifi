@@ -13,24 +13,24 @@
 
 ActiveRecord::Schema.define(version: 20151109003202) do
 
-  create_table "network_names", force: true do |t|
+  create_table "wifi_names", force: true do |t|
     t.string   "ssid"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "network_services", force: true do |t|
-    t.string   "bssid"
-    t.integer  "network_name_id"
+  create_table "wifi_observations", force: true do |t|
+    t.string   "type"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.integer  "wifi_service_id"
+    t.integer  "wifi_name_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "observations", force: true do |t|
-    t.string   "type"
-    t.float    "latitude"
-    t.float    "longitude"
-    t.integer  "network_service_id"
+  create_table "wifi_services", force: true do |t|
+    t.string   "bssid"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

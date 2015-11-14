@@ -1,7 +1,6 @@
 doctype html
 html lang=I18n.locale
   head
-    link(rel="shortcut icon" href="/img/sygnet-alpha.png")
     title
       == raw I18n.t 'application.title'
     == stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
@@ -9,7 +8,6 @@ html lang=I18n.locale
     == include_gon
     == csrf_meta_tags
 
-  body(data-controller_action="#{params[:controller]}_#{params[:action]}")
-    /== render 'layouts/header'
+  body
+    == render 'layouts/header'
     == yield
-    /== render 'layouts/footer'

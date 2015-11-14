@@ -1,4 +1,4 @@
-class MylnikovObservation < Observation
+class MylnikovWifiObservation < WifiObservation
 
   def self.import_csv
     csv_file = File.open(Rails.root.join('db', 'wifis','mylnikov_org', 'small_wifi.csv'))
@@ -20,7 +20,7 @@ class MylnikovObservation < Observation
                                }) do |chunk|
       self.transaction do
         chunk.each do |row|
-          self.create!(bssid: row[:bssid], longitude: row[:lon], latitude: row[:lat])
+          self.create!(bssid: row[:bssid], longitude: row[:lon], latitude: row[:lat], raw_info_json: row.to_json)
         end
       end
     end

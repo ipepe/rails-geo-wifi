@@ -8,7 +8,6 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :network_services, only: [:index]
-
-  root 'network_services#index'
+  resources :wifi_services, only: [:index]
+  root 'wifi_services#index'
 end
