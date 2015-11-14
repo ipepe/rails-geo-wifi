@@ -1,11 +1,11 @@
-json.array!(@network_services) do |place|
+json.array!(@wifi_services) do |service|
   json.type 'Feature'
   json.geometry do
     json.type "Point"
-    json.coordinates place.geojson_coordinates
+    json.coordinates service.geojson_coordinates
   end
   json.properties do
-    json.id place.id
-    json.ssid place.ssid
+    json.id service.id
+    json.display_name service.display_name
   end
 end

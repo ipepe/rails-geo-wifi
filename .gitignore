@@ -44,7 +44,8 @@ bower.json
 
 # Ignore pow environment settings
 .powenv
-*.csv
 node_modules
-db/wifis/
 .DS_Store
+*.rar
+*.zip
+*.tar.bz2

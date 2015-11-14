@@ -7,11 +7,11 @@ javascript:
     subdomains: '1234'
   });
   var map = L.map('LeafletMapDiv', {layers: tiles, center: [0,0], zoom: 3});
-  var geojson = gon.network_services_geojson;
+  var geojson = gon.wifi_services_geojson;
   markers = L.markerClusterGroup().addLayer(L.geoJson(geojson,{
     onEachFeature: function(feature, marker){
-      if(feature.properties && feature.properties.ssid){
-        marker.bindPopup(feature.properties.ssid)
+      if(feature.properties && feature.properties.display_name){
+        marker.bindPopup(feature.properties.display_name)
       }
     }
   }));
