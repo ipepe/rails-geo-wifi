@@ -8,6 +8,10 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :wifi_services, only: [:index]
-  root 'wifi_services#heatmap'
+  resources :wifi_services do
+    collection do
+      get 'heatmap'
+      get 'marker_cluster'
+    end
+  end
 end
