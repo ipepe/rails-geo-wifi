@@ -10,7 +10,7 @@ javascript:
   var map = L.map('LeafletMapDiv', {layers: tiles, center: [52.2,21], zoom: 10});
   var geo_services_positions = gon.heatmap_grouping_points_data;
   window.heat_layer = L.heatLayer(geo_services_positions,{
-    max: (gon.heatmap_grouping_points_max_count/2),
+    max: gon.heatmap_grouping_points_max_count,
     radius: 100,
     blur: 30
   }).addTo(map);

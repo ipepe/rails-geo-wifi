@@ -15,7 +15,7 @@ class WifiServicesController < ApplicationController
     @heatmap_grouping_points = HeatmapGroupingPoint.warsaw_area.includes(:wifi_services).limit(5000)
     @heatmap_grouping_points_array = @heatmap_grouping_points.to_a
     @heatmap_grouping_points_data = @heatmap_grouping_points_array.map(&:heat_data)
-    @heatmap_grouping_points_max_count = @heatmap_grouping_points_array.map(&:count).max
+    @heatmap_grouping_points_max_count = @heatmap_grouping_points_array.map(&:count).median
 
     respond_to do |format|
       format.html do
