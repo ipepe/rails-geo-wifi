@@ -8,6 +8,6 @@
 #   end
   # scheduler.join
 # end
-Rufus::Scheduler.new.every '1m' do
-  puts "Observations count: #{WifiObservation.count}"
-end
+# Rufus::Scheduler.new.every '1m' do
+#   puts "Observations count: #{WifiObservation.count}"
+# end

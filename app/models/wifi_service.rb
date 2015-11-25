@@ -10,6 +10,14 @@ class WifiService < ActiveRecord::Base
     self.save
   end
 
+  scope :with_coordinates, -> do
+    where.not(latitude: nil, longitude: nil)
+  end
+
+  scope :warsaw_area, -> do
+    where(latitude: (52.1..52.3), longitude: (20.8..21.2))
+  end
+
   def bssid=(value)
     super(WifiService.standardize_bssid(value))
   end
@@ -27,6 +35,17 @@ class WifiService < ActiveRecord::Base
     if observations.size > 0
       self.latitude = observations.map(&:latitude).sum / observations.size
       self.longitude = observations.map(&:longitude).sum / observations.size
+    end
+  end
+
+  def self.recalculate_positions
+    WifiService.where(latitude: nil, longitude: nil).includes(:wifi_observations, :wifi_names).find_in_batches(batch_size: 2000) do |group|
+      WifiService.transaction do
+        group.each do |service|
+          service.recalculate_position
+          service.save
+        end
+      end
     end
   end
 

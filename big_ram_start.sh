@@ -1,0 +1,1 @@
+env JRUBY_OPTS=-J-Xmx4g rails s

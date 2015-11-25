@@ -6,7 +6,7 @@ javascript:
     maxZoom: 18,
     subdomains: '1234'
   });
-  var map = L.map('LeafletMapDiv', {layers: tiles, center: [0,0], zoom: 3});
+  var map = L.map('LeafletMapDiv', {layers: tiles, center: [51,21], zoom: 3});
   var geojson = gon.wifi_services_geojson;
   markers = L.markerClusterGroup().addLayer(L.geoJson(geojson,{
     onEachFeature: function(feature, marker){

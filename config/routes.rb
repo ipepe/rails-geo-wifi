@@ -9,5 +9,5 @@ Rails.application.routes.draw do
   end
 
   resources :wifi_services, only: [:index]
-  root 'wifi_services#index'
+  root 'wifi_services#heatmap'
 end
