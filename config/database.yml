@@ -19,5 +19,5 @@ test:
   <<: *default_sqlite
 
 production:
-  <<: *default_azure_sql
+  <<: *default_sqlite
 
