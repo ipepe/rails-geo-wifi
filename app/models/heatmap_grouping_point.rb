@@ -3,13 +3,11 @@ class HeatmapGroupingPoint < ActiveRecord::Base
   validates_presence_of :latitude, :longitude
 
   after_initialize do
-    self.update(count: self.count) if self.count != attributes['count'].to_i
+    self.update_count
   end
 
-  def count
-    Rails.cache.fetch("#{cache_key}/count") do
-      self.wifi_services.size
-    end
+  def update_count
+    self.update( count: self.wifi_services.size) if self.wifi_services.size != attributes['count'].to_i
   end
 
   scope :warsaw_area, -> do

@@ -45,7 +45,8 @@ class WifiService < ActiveRecord::Base
     scope.includes(:wifi_observations, :wifi_names).find_in_batches(batch_size: 2000) do |group|
       group.each do |service|
         service.assign_heatmap_group
-        service.save
+        service.save!
+        service.heatmap_grouping_point.update_count
       end
     end
   end

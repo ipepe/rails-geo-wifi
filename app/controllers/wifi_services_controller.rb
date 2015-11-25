@@ -12,10 +12,15 @@ class WifiServicesController < ApplicationController
   end
 
   def heatmap
-    @heatmap_grouping_points = HeatmapGroupingPoint.warsaw_area.includes(:wifi_services).limit(5000)
-    @heatmap_grouping_points_array = @heatmap_grouping_points.to_a
-    @heatmap_grouping_points_data = @heatmap_grouping_points_array.map(&:heat_data)
-    @heatmap_grouping_points_max_count = @heatmap_grouping_points_array.map(&:count).median
+    @heatmap_grouping_points = HeatmapGroupingPoint.warsaw_area.limit(7000)
+    @heatmap_grouping_points_array = Rails.cache.fetch("wifi_services_controller/@heatmap_grouping_points_array", expires_in: 1.hours) do
+      @heatmap_grouping_points.to_a
+    end
+
+    @heatmap_grouping_points_data = Rails.cache.fetch("wifi_services_controller/@heatmap_grouping_points_data", expires_in: 1.hours) do
+      @heatmap_grouping_points_array.map(&:heat_data)
+    end
+    @heatmap_grouping_points_max_count = @heatmap_grouping_points_array.map(&:count).max*2/3
 
     respond_to do |format|
       format.html do
