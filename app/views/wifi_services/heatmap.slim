@@ -1,14 +1,16 @@
 h1 Heatmap
 div
-  #LeafletMapDiv(style="height: calc(100vh - 90px); width: 59vw; float:left;")
+  #LeafletMapDiv(style="height: calc(100vh - 90px); width: 90vw")
 javascript:
   var tiles = L.tileLayer('http://otile{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.jpg', {
     attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Tiles Courtesy of <a href="http://www.mapquest.com/" target="_blank">MapQuest</a> <img src="http://developer.mapquest.com/content/osm/mq_logo.png">',
     maxZoom: 18,
     subdomains: '1234'
   });
-  var map = L.map('LeafletMapDiv', {layers: tiles, center: [51,21], zoom: 3});
-  var geojson = gon.wifi_services_geojson;
-
-  geo_services_positions = geojson.map(function (p) { return [p.geometry.coordinates[1], p.geometry.coordinates[0]]; });
-  L.heatLayer(geo_services_positions).addTo(map);
+  var map = L.map('LeafletMapDiv', {layers: tiles, center: [52.2,21], zoom: 10});
+  var geo_services_positions = gon.heatmap_grouping_points_data;
+  window.heat_layer = L.heatLayer(geo_services_positions,{
+    max: (gon.heatmap_grouping_points_max_count/2),
+    radius: 100,
+    blur: 30
+  }).addTo(map);

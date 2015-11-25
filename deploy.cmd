@@ -107,6 +107,7 @@ IF EXIST "%DEPLOYMENT_TARGET%\Gemfile.lock" (
 PUSHD "%DEPLOYMENT_TARGET%"
 SET RAILS_ENV=production
 echo Precompiling assets in %cd%
+bin\jruby-9.0.0.0\bin\bundle exec rake db:migrate
 bin\jruby-9.0.0.0\bin\bundle exec rake assets:precompile
 REM %JRUBY_EXE% -S rake assets:precompile
 POPD
